@@ -1,4 +1,4 @@
-# Hướng dẫn thiết kế Hard Cases cho AI Evaluation
+# Hướng dẫn thiết kế & Danh sách Hard Cases cho AI Evaluation
 
 Để bài lab đủ độ khó cho nhóm 6 người, các bạn cần thiết kế các test cases có tính thử thách cao:
 
