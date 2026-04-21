@@ -38,6 +38,21 @@ logger = logging.getLogger(__name__)
 class RetrievalEvaluator:
     """Đánh giá chất lượng Retrieval stage độc lập với Generation."""
 
+    @staticmethod
+    def _normalize_id_list(value: Any) -> Optional[List[str]]:
+        """
+        Chuẩn hóa input về List[str].
+        - None              -> None
+        - list/tuple/set    -> List[str] (lọc phần tử None/rỗng)
+        - kiểu khác         -> None
+        """
+        if value is None:
+            return None
+        if isinstance(value, (list, tuple, set)):
+            normalized = [str(item).strip() for item in value if item is not None]
+            return [item for item in normalized if item]
+        return None
+
     # ------------------------------------------------------------------ #
     #  Per-case metrics                                                    #
     # ------------------------------------------------------------------ #
@@ -65,6 +80,8 @@ class RetrievalEvaluator:
         -------
         float : 1.0 (hit) hoặc 0.0 (miss).
         """
+        if top_k <= 0:
+            raise ValueError(f"top_k phải > 0, nhận {top_k}.")
         if not expected_ids or not retrieved_ids:
             return 0.0
         expected_set = set(expected_ids)
@@ -145,6 +162,10 @@ class RetrievalEvaluator:
         - ``no_gt``        : Số case có retrieved_ids nhưng thiếu expected_ids.
         - ``top_k``        : Giá trị k đã dùng.
         """
+        if top_k <= 0:
+            raise ValueError(f"top_k phải > 0, nhận {top_k}.")
+        if concurrency <= 0:
+            raise ValueError(f"concurrency phải > 0, nhận {concurrency}.")
         if agent_responses is not None and len(agent_responses) != len(dataset):
             raise ValueError(
                 f"agent_responses ({len(agent_responses)}) phải cùng độ dài "
@@ -211,13 +232,38 @@ class RetrievalEvaluator:
         """
         async with semaphore:
             question: str = case.get("question", f"case_{idx}")
-            expected_ids: Optional[List[str]] = case.get("expected_retrieval_ids")
+            expected_raw = case.get("expected_retrieval_ids")
+            expected_ids = self._normalize_id_list(expected_raw)
+            expected_invalid = expected_raw is not None and expected_ids is None
 
             # Lấy retrieved_ids theo ưu tiên: agent response > dataset field
             if agent_response is not None:
-                retrieved_ids: Optional[List[str]] = agent_response.get("retrieved_ids")
+                retrieved_raw = agent_response.get("retrieved_ids")
             else:
-                retrieved_ids = case.get("retrieved_ids")
+                retrieved_raw = case.get("retrieved_ids")
+            retrieved_ids = self._normalize_id_list(retrieved_raw)
+            retrieved_invalid = retrieved_raw is not None and retrieved_ids is None
+
+            if expected_invalid or retrieved_invalid:
+                invalid_field = (
+                    "expected_retrieval_ids"
+                    if expected_invalid else "retrieved_ids"
+                )
+                logger.warning(
+                    "Case [%d] '%s' bị skip: '%s' sai kiểu dữ liệu (cần list/tuple/set).",
+                    idx, question, invalid_field,
+                )
+                return {
+                    "idx": idx,
+                    "question": question,
+                    "status": "skipped",
+                    "hit_rate": None,
+                    "mrr": None,
+                    "expected_ids": expected_ids,
+                    "retrieved_ids": retrieved_ids,
+                    "top_k": top_k,
+                    "error": f"invalid_type:{invalid_field}",
+                }
 
             # Case: có retrieved nhưng thiếu ground truth → không thể đánh giá
             if retrieved_ids is not None and not expected_ids:

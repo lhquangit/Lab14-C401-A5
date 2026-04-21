@@ -69,12 +69,25 @@ class BenchmarkRunner:
         concurrency : Số case LLM được phép chạy đồng thời (Semaphore).
         top_k       : k dùng cho hit_rate@k khi tính retrieval inline.
         """
+        if concurrency <= 0:
+            raise ValueError(f"concurrency phải > 0, nhận {concurrency}.")
+        if top_k <= 0:
+            raise ValueError(f"top_k phải > 0, nhận {top_k}.")
         self.agent = agent
         self.evaluator = evaluator
         self.judge = judge
         self.concurrency = concurrency
         self.top_k = top_k
         self._retrieval_evaluator = RetrievalEvaluator()
+
+    @staticmethod
+    def _as_id_list(value: Any) -> List[str]:
+        if value is None:
+            return []
+        if isinstance(value, (list, tuple, set)):
+            normalized = [str(item).strip() for item in value if item is not None]
+            return [item for item in normalized if item]
+        return []
 
     # ------------------------------------------------------------------ #
     #  Single-case execution                                               #
@@ -111,11 +124,13 @@ class BenchmarkRunner:
                 latency = time.perf_counter() - start_time
 
                 answer: str = response.get("answer", "")
-                retrieved_ids: List[str] = response.get("retrieved_ids", [])
+                retrieved_ids: List[str] = self._as_id_list(response.get("retrieved_ids"))
                 agent_meta: Dict[str, Any] = response.get("metadata", {})
 
                 # ── Step 2: Retrieval eval (inline, no extra I/O) ─────── #
-                expected_ids: List[str] = test_case.get("expected_retrieval_ids", [])
+                expected_ids: List[str] = self._as_id_list(
+                    test_case.get("expected_retrieval_ids")
+                )
                 hit_rate = self._retrieval_evaluator.calculate_hit_rate(
                     expected_ids, retrieved_ids, self.top_k
                 )
@@ -238,6 +253,8 @@ class BenchmarkRunner:
         if not dataset:
             logger.warning("Dataset rỗng — không có case nào để chạy.")
             return []
+        if batch_size <= 0:
+            raise ValueError(f"batch_size phải > 0, nhận {batch_size}.")
 
         total = len(dataset)
         semaphore = asyncio.Semaphore(self.concurrency)
@@ -376,10 +393,14 @@ class BenchmarkRunner:
             sum(r["judge"]["final_score"] for r in judge_cases) / len(judge_cases)
             if judge_cases else 0.0
         )
+        agreement_values = [
+            r["judge"]["agreement_rate"]
+            for r in judge_cases
+            if r["judge"].get("agreement_rate") is not None
+        ]
         avg_agreement = (
-            sum(r["judge"]["agreement_rate"] for r in judge_cases if r["judge"].get("agreement_rate") is not None)
-            / len(judge_cases)
-            if judge_cases else 0.0
+            sum(agreement_values) / len(agreement_values)
+            if agreement_values else 0.0
         )
         conflict_count = sum(
             1 for r in judge_cases if r["judge"].get("conflict_detected")
