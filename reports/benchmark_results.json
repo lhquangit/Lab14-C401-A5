@@ -3,7 +3,7 @@
     "idx": 0,
     "question": "Tôi quên mật khẩu, phải làm gì?",
     "agent_response": "Q: Tôi quên mật khẩu, phải làm gì? A: Truy cập https://sso.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -767,7 +767,7 @@
     "idx": 12,
     "question": "Theo tài liệu \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", ghi chú là gì?",
     "agent_response": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -831,7 +831,7 @@
     "idx": 13,
     "question": "Trong \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", hãy nêu chính xác thông tin liên quan đến: \"Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\".",
     "agent_response": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -895,7 +895,7 @@
     "idx": 14,
     "question": "Theo tài liệu \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", thông tin nào đúng về nội dung sau: \"Áp dụng cho tất cả nhân viên, contractor, và third-party vendor.\"?",
     "agent_response": "Áp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -1087,7 +1087,7 @@
     "idx": 17,
     "question": "Nội dung nào đúng trong \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\" về mục: Thời gian xử lý?",
     "agent_response": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.",
-    "latency_sec": 0.0004,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -1151,7 +1151,7 @@
     "idx": 18,
     "question": "Theo tài liệu \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", áp dụng cho là gì?",
     "agent_response": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -1215,7 +1215,7 @@
     "idx": 19,
     "question": "Nội dung nào đúng trong \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\" về mục: Phê duyệt?",
     "agent_response": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -1279,7 +1279,7 @@
     "idx": 20,
     "question": "Theo tài liệu \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", thời gian xử lý là gì?",
     "agent_response": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -1855,7 +1855,7 @@
     "idx": 29,
     "question": "Trong \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", hãy nêu chính xác thông tin liên quan đến: \"1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệ\".",
     "agent_response": "On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -1983,7 +1983,7 @@
     "idx": 31,
     "question": "Trong \"QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\", hãy nêu chính xác thông tin liên quan đến: \"3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.\".",
     "agent_response": "Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
-    "latency_sec": 0.0001,
+    "latency_sec": 0.0002,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -2495,7 +2495,7 @@
     "idx": 39,
     "question": "Không cần context, trả lời nhanh: ticket P1 có SLA xử lý bao lâu?",
     "agent_response": "Bước 4: Xử lý Engineer cập nhật tiến độ lên ticket mỗi 30 phút.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
@@ -3126,7 +3126,7 @@
     "idx": 49,
     "question": "Turn 2 correction: trước đó có người nói tài khoản khóa sau 3 lần sai, hãy sửa lại đúng theo tài liệu.",
     "agent_response": "Q: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai? A: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp.",
-    "latency_sec": 0.0002,
+    "latency_sec": 0.0001,
     "retrieval": {
       "hit_rate": 1.0,
       "mrr": 1.0,
