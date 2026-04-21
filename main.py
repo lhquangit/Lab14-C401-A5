@@ -9,11 +9,10 @@ from engine.llm_judge import MultiModelJudge
 # Giả lập các components Expert
 class ExpertEvaluator:
     async def score(self, case, resp): 
-        # Giả lập tính toán Hit Rate và MRR
+        # Placeholder custom metrics (retrieval được tính inline trong runner)
         return {
             "faithfulness": 0.9, 
-            "relevancy": 0.8,
-            "retrieval": {"hit_rate": 1.0, "mrr": 0.5}
+            "relevancy": 0.8
         }
 
 async def run_benchmark_with_results(agent_version: str):
@@ -32,15 +31,20 @@ async def run_benchmark_with_results(agent_version: str):
 
     runner = BenchmarkRunner(MainAgent(), ExpertEvaluator(), MultiModelJudge())
     results = await runner.run_all(dataset)
+    agg = runner.aggregate_results(results)
 
-    total = len(results)
+    total = agg["counts"]["total"]
     summary = {
         "metadata": {"version": agent_version, "total": total, "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")},
         "metrics": {
-            "avg_score": sum(r["judge"]["final_score"] for r in results) / total,
-            "hit_rate": sum(r["ragas"]["retrieval"]["hit_rate"] for r in results) / total,
-            "agreement_rate": sum(r["judge"]["agreement_rate"] for r in results) / total
-        }
+            "avg_score": agg["judge"]["avg_final_score"],
+            "hit_rate": agg["retrieval"]["avg_hit_rate"],
+            "mrr": agg["retrieval"]["avg_mrr"],
+            "agreement_rate": agg["judge"]["avg_agreement_rate"],
+            "conflict_rate": agg["judge"]["conflict_rate"],
+        },
+        "counts": agg["counts"],
+        "cost": agg["cost"],
     }
     return results, summary
 

@@ -2,11 +2,24 @@
   "metadata": {
     "version": "Agent_V2_Optimized",
     "total": 50,
-    "timestamp": "2026-04-21 15:08:31"
+    "timestamp": "2026-04-21 15:48:32"
   },
   "metrics": {
-    "avg_score": 2.5725999999999996,
-    "hit_rate": 1.0,
-    "agreement_rate": 1.0
+    "avg_score": 2.5726,
+    "hit_rate": 0.9792,
+    "mrr": 0.9688,
+    "agreement_rate": 1.0,
+    "conflict_rate": 0.0
+  },
+  "counts": {
+    "total": 50,
+    "pass": 22,
+    "fail": 28,
+    "error": 0,
+    "evaluated": 50
+  },
+  "cost": {
+    "total_tokens": 0,
+    "avg_tokens_per_case": 0.0
   }
 }
