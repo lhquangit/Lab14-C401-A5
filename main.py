@@ -124,7 +124,7 @@ async def run_benchmark(version: str, model: str):
 
 
 async def main():
-    v1_model = os.getenv("AGENT_V1_MODEL", "gpt-4o-mini")
+    v1_model = os.getenv("AGENT_V1_MODEL", "gpt-4.1-nano")
     v2_model = os.getenv("AGENT_V2_MODEL", "gpt-4o-mini")
 
     v1_summary = await run_benchmark("Agent_V1_Base", v1_model)

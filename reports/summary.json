@@ -3,53 +3,55 @@
     "version": "Agent_V2_Optimized",
     "agent_model": "gpt-4o-mini",
     "total": 61,
-    "timestamp": "2026-04-21 16:15:00",
+    "timestamp": "2026-04-21 16:33:04",
     "batch_size": 5
   },
   "metrics": {
-    "avg_score": 3.3764,
+    "avg_score": 3.3687,
     "hit_rate": 0.9667,
     "mrr": 0.9083,
-    "agreement_rate": 0.8751,
-    "conflict_rate": 0.3279,
+    "agreement_rate": 0.8641,
+    "conflict_rate": 0.3443,
     "error_rate": 0.0
   },
   "counts": {
     "total": 61,
-    "pass": 30,
-    "fail": 31,
+    "pass": 33,
+    "fail": 28,
     "error": 0,
     "evaluated": 61
   },
   "cost": {
-    "total_tokens": 48399,
+    "total_tokens": 48396,
     "avg_tokens_per_case": 793.4
   },
   "regression": {
     "v1": {
-      "avg_score": 3.347,
+      "avg_score": 3.4302,
       "hit_rate": 0.9667,
       "mrr": 0.9083,
-      "agreement_rate": 0.8698,
-      "conflict_rate": 0.3607,
+      "agreement_rate": 0.8697,
+      "conflict_rate": 0.3443,
       "error_rate": 0.0
     },
     "v2": {
-      "avg_score": 3.3764,
+      "avg_score": 3.3687,
       "hit_rate": 0.9667,
       "mrr": 0.9083,
-      "agreement_rate": 0.8751,
-      "conflict_rate": 0.3279,
+      "agreement_rate": 0.8641,
+      "conflict_rate": 0.3443,
       "error_rate": 0.0
     },
     "deltas": {
-      "avg_score": 0.0294,
+      "avg_score": -0.0615,
       "hit_rate": 0.0
     }
   },
   "release_gate": {
-    "approve": true,
-    "failed_rules": [],
+    "approve": false,
+    "failed_rules": [
+      "delta_score"
+    ],
     "thresholds": {
       "min_avg_score": 3.0,
       "min_hit_rate": 0.7,
@@ -59,7 +61,7 @@
       "min_delta_hit_rate": -0.05
     },
     "deltas": {
-      "avg_score": 0.0294,
+      "avg_score": -0.0615,
       "hit_rate": 0.0
     }
   }
