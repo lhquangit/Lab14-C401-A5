@@ -1,5 +1,4 @@
-# Reflection Cá nhân - 
-
+# Báo cáo cá nhân
 ### Le Hong Quan (Tech Lead / Integrator)
 ### MSV: 2A202600097
 
