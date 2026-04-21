@@ -13,7 +13,3 @@
 | GĐ3   | `analysis/failure_analysis.md` | Analyst (Quân)                | Điền số liệu benchmark thật, failure clustering, 5 Whys cho 3 case tệ nhất                          | 30              | Không còn placeholder `X/XX`; có 3 root causes + action plan cụ thể                                  |
 | GĐ4   | `check_lab.py`                 | QA Engineer (Quân)            | Siết validator: min 50 cases, check schema và metric bắt buộc (`hit_rate`, `mrr`, `agreement_rate`) | 25              | Script fail đúng khi thiếu trường/sai số lượng, pass khi artifact hợp lệ                             |
 | GĐ4   | `README.md`                    | Tech Writer/Integrator (Quân) | Cập nhật hướng dẫn chạy thực tế, mô tả ngưỡng gate và cấu trúc reports                              | 15              | Người mới clone repo chạy tuần tự không vướng bước mơ hồ                                             |
-
-
-
-

@@ -1,0 +1,21 @@
+[
+  {
+    "test_case": "Câu hỏi mẫu từ tài liệu?",
+    "agent_response": "Dựa trên tài liệu hệ thống, tôi xin trả lời câu hỏi 'Câu hỏi mẫu từ tài liệu?' như sau: [Câu trả lời mẫu].",
+    "latency": 0.5011327499523759,
+    "ragas": {
+      "faithfulness": 0.9,
+      "relevancy": 0.8,
+      "retrieval": {
+        "hit_rate": 1.0,
+        "mrr": 0.5
+      }
+    },
+    "judge": {
+      "final_score": 4.5,
+      "agreement_rate": 0.8,
+      "reasoning": "Cả 2 model đồng ý đây là câu trả lời tốt."
+    },
+    "status": "pass"
+  }
+]
